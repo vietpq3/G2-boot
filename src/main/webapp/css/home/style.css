@@ -1,0 +1,60 @@
+@CHARSET "ISO-8859-1";
+
+.content-header{
+    margin-top: 5px;
+    padding: 20px;
+    border: 1px dotted black;
+}
+
+.content-left{
+    width: 30%;
+    float:left;
+    margin-top: 8px;
+}
+
+.content-mid{
+    width: 40%;
+    float: left;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.content-right{
+    width: 30%;
+    float:right;
+    text-align: right;
+}
+
+.content-body{
+	min-height: 411px;
+    border: 1px dotted black;
+}
+
+.footer-fix{
+    margin: 0;
+}
+
+.content-footer{
+    padding: 20px;
+    border: 1px dotted black;
+}
+
+input {
+    height: 35px;
+    width: 202px;
+    background-color: #4374a9;
+    border: none;
+}
+
+input:HOVER {
+    background-color: #2d5580;
+}
+
+.btnLogout{
+    width: 100px;
+}
+
+.btnFight{
+    margin: 140px 0 0 150px;
+    height: 66px;
+}

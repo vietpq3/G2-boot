@@ -1,0 +1,31 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    background-color: #e2f1ff;
+}
+
+.wrapper {
+    margin: auto;
+    width: 500px;
+    margin-top: 20px;
+}
+
+.content {
+    min-height: 567px;
+    background-color: #99B4D1;
+}
+
+button {
+    height: 35px;
+    width: 202px;
+    background-color: #4374a9;
+    border: none;
+}
+
+button:HOVER {
+    background-color: #2d5580;
+}
+
+.clear{
+    clear: both;
+}

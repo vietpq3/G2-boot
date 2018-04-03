@@ -1,0 +1,53 @@
+@CHARSET "ISO-8859-1";
+
+.wrapper {
+    width: 400px;
+}
+
+.content {
+    min-height: 242px;
+}
+
+form {
+    font-family: "Roboto", sans-serif;
+}
+
+.inputClass {
+    height: 28px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.formLogin {
+    padding: 20px 55px;
+}
+
+.btnSubmit {
+    height: 35px;
+    width: 202px;
+    background-color: #4374a9;
+    border: none;
+}
+
+.btnSubmit:HOVER {
+    background-color: #2d5580;
+}
+
+ul {
+    list-style-type: none;
+}
+
+form a {
+    text-decoration: none;
+}
+
+form p{
+    margin: 0 0 0 15px;
+    font-size: 10px;
+}
+
+.errors{
+	margin-left: 40px;
+    font-size: 11px;
+    color: red;
+}

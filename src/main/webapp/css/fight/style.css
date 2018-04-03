@@ -1,0 +1,86 @@
+@CHARSET "ISO-8859-1";
+
+.content-header{
+    margin-top: 5px;
+    padding: 20px;
+    border: 1px dotted black;
+}
+
+.content-left{
+    float:left;
+}
+
+.content-mid{
+    float: left;
+    margin-left: 111px;
+    margin-top: 8px;
+}
+
+.content-right{
+    float:right;
+}
+
+.content-body{
+	min-height: 488px;
+    border: 1px dotted black;
+}
+
+.btnHome, .btnLogout{
+    width: 100px;
+}
+
+.btnActivities{
+    width: 100px;
+    margin-left: 21px;
+}
+
+.content-body-mid{
+    margin: 133px 0 0 50px;
+}
+
+.title{
+    margin: 40px 0 0 135px;
+}
+
+.info{
+    padding: 0 55px;
+    margin-top: 20px;
+}
+
+.life{
+    width: 25%;
+    font-size: 20px;
+    float: left;
+    margin-top: 5px;
+}
+
+.question{
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.score{
+    width: 25%;
+    font-size: 20px;
+    float: right;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.content-body-images{
+    margin-left: 45px;
+}
+
+img{
+    height: 111px;
+    width: 111px;
+    margin: 10px;
+    border: 1px solid #99B4D1;
+}
+
+img:HOVER{
+    border: 1px solid red;
+}
