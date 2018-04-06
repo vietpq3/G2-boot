@@ -16,43 +16,41 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
 @SpringBootApplication(scanBasePackages = { "controller", "logicImpl", "daoImpl" })
-public class G2SpringBootApplication {
-
+public class G2BootApplication {
+	
 	@Autowired
 	private Environment env;
 
 	public static void main(String[] args) {
-		SpringApplication.run(G2SpringBootApplication.class, args);
+		SpringApplication.run(G2BootApplication.class, args);
 	}
 
 	@Bean
 	public DataSource initDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
+		
 		dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
 		dataSource.setUrl(env.getProperty("spring.datasource.url"));
 		dataSource.setUsername(env.getProperty("spring.datasource.username"));
 		dataSource.setPassword(env.getProperty("spring.datasource.password"));
-
+		
 		return dataSource;
 	}
 
 	@Bean(name = "messageSource")
-	public MessageSource initMessageSource() {
+	public MessageSource setMessageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 
-		messageSource.setBasename(env.getProperty("spring.messages.basename"));
-		messageSource.setCacheSeconds(Integer.parseInt(env.getProperty("spring.messages.cache-duration")));
-		
+		messageSource.setCacheSeconds(10);
+		messageSource.setBasename("classpath:static/message");
+
 		return messageSource;
 	}
 
 	@Bean(name = "localeResolver")
 	public LocaleResolver initLocaleResolver() {
 		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-//		localeResolver.setDefaultLocale(new Locale(env.getProperty("spring.mvc.locale")));
 		localeResolver.setDefaultLocale(Locale.ENGLISH);
-
 		return localeResolver;
 	}
 }

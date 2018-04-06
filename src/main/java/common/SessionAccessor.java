@@ -31,12 +31,12 @@ public class SessionAccessor implements Serializable {
         session.setAttribute(LOGIN_USER, loginUser);
     }
     
-	public FightForm getFightForm() {
-		return (FightForm) session.getAttribute(FIGHT_FORM);
-	}
-
-	public void setFightForm(FightForm fightForm) {
-		session.setAttribute(FIGHT_FORM, fightForm);
-	}
+    public FightForm getFightForm() {
+        return (FightForm) session.getAttribute(FIGHT_FORM);
+    }
+    
+    public void setFightForm(FightForm fightForm) {
+        session.setAttribute(FIGHT_FORM, fightForm);
+    }
     
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import logic.ILoginLogic;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,29 +16,30 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import param.LoginParam;
+
 import common.SessionAccessor;
+
 import entity.ErrorMessage;
 import entity.UserInfo;
 import form.LoginForm;
-import logic.ILoginLogic;
-import param.LoginParam;
 
 @Controller
 public class LoginController extends AbstractController {
 
     private static final String LOGIN_JSP = "login";
     private static final String REDIRECT_HOME = "redirect:/home/index";
-	private static final String REDIRECT_LOGIN = "redirect:/login";
+	private static final String REDIRECT_LOGIN = "redirect:/";
 
-	@Autowired
+    @Autowired
     private ILoginLogic loginLogic;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
     public String index() {
         return LOGIN_JSP;
     }
 
-	@RequestMapping(value = { "login/", "" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/*" }, method = RequestMethod.GET)
     public String redirect() {
         return REDIRECT_LOGIN;
     }
@@ -47,7 +50,7 @@ public class LoginController extends AbstractController {
 
         if (binding.hasErrors()) {
             ErrorMessage errorMessage = new ErrorMessage();
-			errorMessage.setErrorMessageList(resolveErrorMessage(form, binding));
+            errorMessage.setErrorMessageList(resolveErrorMessage(form, binding));
             model.addAttribute("errorMessage", errorMessage);
             return LOGIN_JSP;
         }
