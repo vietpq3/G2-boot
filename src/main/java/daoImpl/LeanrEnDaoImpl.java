@@ -11,14 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dao.AbstractDao;
-import dao.IHomeDao;
+import dao.ILearnEnDao;
 import entity.UserInfo;
 
 @Component
-public class HomeDaoImpl extends AbstractDao implements IHomeDao {
+public class LeanrEnDaoImpl extends AbstractDao implements ILearnEnDao {
 
     @Autowired
-    public HomeDaoImpl(DataSource dataSource) {
+    public LeanrEnDaoImpl(DataSource dataSource) {
         this.setDataSource(dataSource);
     }
 

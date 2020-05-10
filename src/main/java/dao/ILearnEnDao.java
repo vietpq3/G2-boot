@@ -5,7 +5,7 @@ import java.util.List;
 
 import entity.UserInfo;
 
-public interface IHomeDao {
+public interface ILearnEnDao {
 
     List<UserInfo> getAllUserInfo() throws SQLException;
 

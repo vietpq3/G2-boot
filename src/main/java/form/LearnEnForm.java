@@ -1,6 +1,6 @@
 package form;
 
-public class HomeForm extends AbstractForm {
+public class LearnEnForm extends AbstractForm {
     private Integer pageNumber;
 
     public Integer getPageNumber() {

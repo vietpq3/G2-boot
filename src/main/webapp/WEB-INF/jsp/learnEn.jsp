@@ -3,10 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>HOME</title>
+<title>LEARN_ENGLISH</title>
 <%@ include file="taglib.jsp" %>
-<link href="../css/home/style.css?t=<%=t%>" rel="stylesheet" type="text/css" />
-<script src="../js/home/script.js?t=<%=t%>" type="text/javascript"></script>
+<link href="../css/learnEn/style.css?t=<%=t%>" rel="stylesheet" type="text/css" />
+<script src="../js/learnEn/script.js?t=<%=t%>" type="text/javascript"></script>
 </head>
 <body>
 <div class="wrapper">
