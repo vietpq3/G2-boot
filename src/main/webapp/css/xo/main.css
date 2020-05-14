@@ -28,9 +28,9 @@ tr, td {
 }
 
 .X {
-	background-image: url([[@{/picture/xo/X.png}]]);
+	background-image: url(/picture/xo/X.png);
 }
 
 .O {
-	background-image: url([[@{/picture/xo/O.png}]]);
+	background-image: url(/picture/xo/O.png);
 }
