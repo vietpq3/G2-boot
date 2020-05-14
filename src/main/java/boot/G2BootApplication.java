@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 @SpringBootApplication(scanBasePackages = { "controller", "logicImpl", "daoImpl", "config" })
 public class G2BootApplication {
@@ -58,29 +54,6 @@ public class G2BootApplication {
 		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
 		localeResolver.setDefaultLocale(Locale.ENGLISH);
 		return localeResolver;
-	}
-
-	@Bean(name = "templateResolver")
-	public ServletContextTemplateResolver initThymeLeafResolver(ServletContext servletContext) {
-		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
-		templateResolver.setPrefix("WEB-INF/thymeleaf/");
-		templateResolver.setSuffix(".html");
-		templateResolver.setTemplateMode("HTML5");
-		templateResolver.setOrder(2);
-
-		return templateResolver;
-	}
-
-	@Bean(name = "jspViewResolver")
-	public InternalResourceViewResolver initJstlViewResolver() {
-		InternalResourceViewResolver jspViewResolver = new InternalResourceViewResolver();
-		jspViewResolver.setViewClass(JstlView.class);
-		jspViewResolver.setPrefix("WEB-INF/");
-		jspViewResolver.setSuffix(".jsp");
-		jspViewResolver.setViewNames("jsp/*");
-		jspViewResolver.setOrder(1);
-
-		return jspViewResolver;
 	}
 
 	@Bean(value = "playerList")

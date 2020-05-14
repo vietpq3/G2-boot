@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ import param.LoginParam;
 @Controller
 public class LoginController extends AbstractController {
 
-	private static final String LOGIN_JSP = "jsp/login";
-	private static final String REDIRECT_HOME = "redirect:/home/index";
+	private static final String LOGIN_JSP = "login";
+	private static final String REDIRECT_LEARN_EN = "redirect:/learnEn/index";
 
 	@Autowired
 	private ILoginLogic loginLogic;
@@ -37,7 +39,7 @@ public class LoginController extends AbstractController {
 
 	@RequestMapping(value = { "login" }, method = RequestMethod.POST)
 	public String login(@Valid @ModelAttribute("form") LoginForm form, BindingResult binding, Model model,
-			HttpServletRequest request) throws SQLException {
+			HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 
 		if (binding.hasErrors()) {
 			ErrorMessage errorMessage = new ErrorMessage();
@@ -54,7 +56,7 @@ public class LoginController extends AbstractController {
 		if (userInfoList != null && userInfoList.size() == 1) {
 			SessionAccessor session = new SessionAccessor(request);
 			session.setLoginUser(userInfoList.get(0));
-			return REDIRECT_HOME;
+			return REDIRECT_LEARN_EN;
 		} else {
 			ErrorMessage errorMessage = new ErrorMessage();
 			errorMessage.getErrorMessageList().add("Username and password are not mapping");

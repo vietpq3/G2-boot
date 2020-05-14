@@ -78,14 +78,14 @@ function onMessageReceived(payload) {
     var btnId;
  
     if(message.actionType === 'WATCH' && playerId == message.playerId) {
-    	messageText = 'The room is full now. You can only show this match!';
+    	messageText = 'The room is full now. You just able to watch this match!';
     } else if (message.actionType === 'WAIT') {
         messageText = 'Please wait for one more player to start';
     } else if (message.actionType === 'START') {
     } else if (message.actionType === 'END') {
     	reset();
     } else if (message.actionType === 'LEAVE') {
-    	alert("Opponent has left. You win!");
+    	alert("Opponent has left!");
     	reset();
     } else if (message.actionType === 'PLAY') {
     	btnId = message.x + "-" + message.y;

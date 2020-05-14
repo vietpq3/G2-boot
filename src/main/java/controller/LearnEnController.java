@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import common.SessionAccessor;
 import entity.UserInfo;
@@ -32,12 +31,12 @@ public class LearnEnController extends AbstractController {
 	@Autowired
 	private ILearnEnLogic learnEnLogic;
 
-	@RequestMapping(value = { "" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "" })
 	public String index() {
 		return REDIRECT_INDEX;
 	}
 
-	@RequestMapping(value = { INDEX, "/" })
+	@RequestMapping(value = { INDEX })
 	public String index(HttpServletRequest request, Model model) {
 		SessionAccessor session = new SessionAccessor(request);
 

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Spring Boot WebSocket</title>
+	<title>XO</title>
 	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" th:href="@{/css/main.css}" />
+	<link rel="stylesheet" th:href="@{/css/xo/main.css}" />
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
 	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
-	<style th:inline="text">
-		tr, td{padding: 0px;} #wrapper{margin: auto; } #board{ margin: auto; border-spacing: 0px; } #btnDiv{ display: block; text-align: center; } .mainBtn{ width: 60px; height: 25px; } .child{ height: 20px; width: 20px; font-size: 11px;} .X{ background-image: url([[@{/X.png}]]); } .O{ background-image: url([[@{/O.png}]]); }
-	</style>
 </head>
 
 <body>
@@ -19,6 +16,6 @@
 		<input type="hidden" th:value="${size}" id="size" />
 		<table id="board"></table>
 	</div>
-	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/xo/main.js}"></script>
 </body>
 </html>
