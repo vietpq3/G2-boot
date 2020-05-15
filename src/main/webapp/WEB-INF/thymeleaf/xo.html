@@ -10,11 +10,19 @@
 </head>
 
 <body>
-	<div id="wrapper">
+	<div id="wrapper" class="container">
 		<div id="message">Connecting...</div>
 		<input type="hidden" th:value="${playerId}" id="playerId" />
 		<input type="hidden" th:value="${size}" id="size" />
-		<table id="board"></table>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<table id="board"></table>
+			</div>
+			<!-- <div id="chatContainer" class="col-sm-6">
+				<ul id="messageArea"></ul>
+			</div> -->
+		</div>
 	</div>
 	<script th:src="@{/js/xo/main.js}"></script>
 </body>

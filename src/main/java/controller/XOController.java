@@ -14,13 +14,10 @@ public class XOController {
 	public String[][] board;
 	private int size = 25;
 
-	@RequestMapping(value = { "xo" })
+	@RequestMapping(value = { "", "/", "xo" })
 	public String index(HttpServletRequest request, Model model) {
-		model.addAttribute("playerId", request.getSession().getId());
 		model.addAttribute("size", size);
-		board = new String[size][size];
 
 		return "thymeleaf/xo";
 	}
-
 }

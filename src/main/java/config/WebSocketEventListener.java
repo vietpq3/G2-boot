@@ -5,7 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
@@ -25,7 +24,6 @@ public class WebSocketEventListener {
 	private SimpMessageSendingOperations messagingTemplate;
 
 	@Autowired
-	@Qualifier("playerList")
 	private List<String> playerList;
 
 	@EventListener
@@ -37,7 +35,7 @@ public class WebSocketEventListener {
 	public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
-		String playerId = (String) headerAccessor.getSessionAttributes().get("playerId");
+		String playerId = headerAccessor.getSessionId();
 		if (playerId != null) {
 			logger.info("User Disconnected : " + playerId);
 		}

@@ -5,8 +5,10 @@ var messageElement = document.querySelector('#message');
 var size = document.querySelector('#size').value;
  
 var stompClient = null;
+var chatStompClient = null;
 var playerId = null;
 var position = null;
+var socket = null;
 
 function draw(){
 	for(var i = 0; i < size; i++){
@@ -31,20 +33,35 @@ draw();
 connect();
 
 function connect() {
-	playerId = document.querySelector('#playerId').value;
-      
+	socket = new SockJS('/ws');
+	stompClient = Stomp.over(socket);
+	
+	stompClient.connect({}, onConnected, onError);
+}
+
+function chatConnect() {
     var socket = new SockJS('/ws');
-    stompClient = Stomp.over(socket);
+    chatStompClient = Stomp.over(socket);
  
-    stompClient.connect({}, onConnected, onError);
+    chatStompClient.connect({}, onChatConnected, onError);
 }
  
 function onConnected() {
+	// Subscribe to the Public Topic
+	stompClient.subscribe('/topic/gameRoom', onMessageReceived);
+	
+	// Tell your username to the server
+	stompClient.send("/app/addPlayer", {}, "{}");
+	
+	messageElement.textContent = '';
+}
+
+function onChatConnected() {
     // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/gameRoom', onMessageReceived);
+	chatStompClient.subscribe('/topic/chatRoom', onChatMessageReceived);
  
     // Tell your username to the server
-    stompClient.send("/app/addPlayer",
+	chatStompClient.send("/app/chatJoin",
         {},
         JSON.stringify({playerId: playerId})
     )
@@ -76,6 +93,10 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
     var messageText = '-';
     var btnId;
+    
+    if(!playerId){
+    	playerId = message.playerId;
+    }
  
     if(message.actionType === 'WATCH' && playerId == message.playerId) {
     	messageText = 'The room is full now. You just able to watch this match!';
@@ -83,6 +104,11 @@ function onMessageReceived(payload) {
         messageText = 'Please wait for one more player to start';
     } else if (message.actionType === 'START') {
     } else if (message.actionType === 'END') {
+    	if(playerId == message.playerId){
+    		alert("You win!");
+    	} else {
+    		alert("You lose!");
+    	}
     	reset();
     } else if (message.actionType === 'LEAVE') {
     	alert("Opponent has left!");
@@ -93,8 +119,6 @@ function onMessageReceived(payload) {
     	$('#' + btnId).val(message.symbol);
     	$('.child').attr("style", "");
     	$('#' + btnId).attr("style", "background-color: lightyellow;")
-    	
-    	checkWinner(message.x, message.y, message.playerId);
     	
     	if(playerId == message.playerId){
     		messageText = "Opponent's turn";
@@ -110,49 +134,6 @@ function onMessageReceived(payload) {
  
     messageElement.textContent = '';
     messageElement.appendChild(textElement);
-}
-
-function checkWinner(x, y, msgPlayerId){
-	var x = parseInt(x);
-	var y = parseInt(y);
-	var temp = "";
-	
-	for(var i = -5; i < 6; i++){
-		temp += $('#' + (x + i) + "-" + (y + i)).val();
-	}
-	check(temp, msgPlayerId);
-	
-	temp = "";
-	for(var i = -5; i < 6; i++){
-		temp += $('#' + (x - i) + "-" + (y + i)).val();
-	}
-	check(temp, msgPlayerId);
-	
-	temp = "";
-	for(var i = -5; i < 6; i++){
-		temp += $('#' + (x + i) + "-" + y).val();
-	}
-	check(temp, msgPlayerId);
-	
-	temp = "";
-	for(var i = -5; i < 6; i++){
-		temp += $('#' + x + "-" + (y + i)).val();
-	}
-	check(temp, msgPlayerId);
-}
-
-function check(temp, msgPlayerId){
-	if(temp.indexOf("XXXXX") > -1 && temp.indexOf("OXXXXXO") < 0 
-			|| temp.indexOf("OOOOO") > -1 && temp.indexOf("XOOOOOX") < 0){
-		if(msgPlayerId == playerId){
-			alert("You win!");
-		} else {
-			alert("You lose!");
-		}
-	} else {
-		return;
-	}
-	sendMessage('END');
 }
 
 function reset(){

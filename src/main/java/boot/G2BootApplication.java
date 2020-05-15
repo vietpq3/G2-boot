@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -56,9 +57,14 @@ public class G2BootApplication {
 		return localeResolver;
 	}
 
-	@Bean(value = "playerList")
+	@Bean(name = "playerList", autowire = Autowire.BY_NAME)
 	public List<String> getList() {
 		return new ArrayList<>();
+	}
+
+	@Bean(name = "playerId")
+	public String getPlayerId() {
+		return new String();
 	}
 
 	@Bean(name = "previousPlayerId")
@@ -66,8 +72,8 @@ public class G2BootApplication {
 		return new String();
 	}
 
-	@Bean
+	@Bean(name = "board")
 	public String[][] getBoard() {
-		return new String[50][50];
+		return new String[25][25];
 	}
 }
