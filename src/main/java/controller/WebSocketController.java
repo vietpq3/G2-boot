@@ -45,7 +45,6 @@ public class WebSocketController {
 			String ownerSymbol = playerList.indexOf(playerId) == 0 ? "X" : "O";
 			playMessage.setSymbol(ownerSymbol);
 			previousPlayerId = playerId;
-			playMessage.setPreviousPlayer(previousPlayerId);
 			board[x][y] = ownerSymbol;
 
 			if (this.checkWinner(x, y) != null) {
@@ -138,7 +137,6 @@ public class WebSocketController {
 				playMessage.setActionType(ActionType.START);
 				playerList.add(playerId);
 				previousPlayerId = playerId;
-				playMessage.setPreviousPlayer(previousPlayerId);
 				break;
 			case 2:
 				playMessage.setActionType(ActionType.WATCH);

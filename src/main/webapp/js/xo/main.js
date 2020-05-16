@@ -118,7 +118,7 @@ function onMessageReceived(payload) {
     	$('#' + btnId).attr("class", "child " + message.symbol);
     	$('#' + btnId).val(message.symbol);
     	$('.child').attr("style", "");
-    	$('#' + btnId).attr("style", "background-color: lightyellow;")
+    	$('#' + btnId).attr("style", "background-color: yellow;")
     	
     	if(playerId == message.playerId){
     		messageText = "Opponent's turn";

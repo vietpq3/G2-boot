@@ -7,8 +7,8 @@ public class PlayMessage {
 	private int x;
 	private int y;
 	private String symbol;
-	private String previousPlayer;
 	private ActionType actionType;
+	private String[][] board;
 
 	public int getX() {
 		return x;
@@ -58,11 +58,11 @@ public class PlayMessage {
 		this.symbol = symbol;
 	}
 
-	public String getPreviousPlayer() {
-		return previousPlayer;
+	public String[][] getBoard() {
+		return board;
 	}
 
-	public void setPreviousPlayer(String previousPlayer) {
-		this.previousPlayer = previousPlayer;
+	public void setBoard(String[][] board) {
+		this.board = board;
 	}
 }
