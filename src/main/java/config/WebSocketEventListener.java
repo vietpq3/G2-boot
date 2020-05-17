@@ -45,7 +45,7 @@ public class WebSocketEventListener {
 			logger.info("User Disconnected : " + playerId);
 		}
 
-                if(playerList.indexOf(playerId) > 1){
+                if(playerList.indexOf(playerId) < 2){
 		    playerList.remove(playerId);
 		    logger.info("Disconnect:" + playerId);
                     board = new String[25][25];
