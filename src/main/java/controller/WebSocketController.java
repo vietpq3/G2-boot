@@ -35,7 +35,7 @@ public class WebSocketController {
 		int x = playMessage.getX();
 		int y = playMessage.getY();
 
-		if (playerId.equals(previousPlayerId) || StringUtils.isNotEmpty(board[x][y])) {
+		if (playerId.equals(previousPlayerId) || StringUtils.isNotEmpty(board[x][y]) || playMessage.getActionType() == ActionType.END) {
 			playMessage.setActionType(null);
 		} else if (!playerList.contains(playerId)) {
 			playMessage.setActionType(ActionType.WATCH);
