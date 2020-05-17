@@ -28,6 +28,9 @@ public class WebSocketEventListener {
 	@Qualifier(value = "playerList")
 	private List<String> playerList;
 
+        @Autowired
+        private String[][] board;
+
 	@EventListener
 	public void handleWebSocketConnectListener(SessionConnectedEvent event) {
 		logger.info("Received a new web socket connection");
@@ -41,8 +44,12 @@ public class WebSocketEventListener {
 		if (playerId != null) {
 			logger.info("User Disconnected : " + playerId);
 		}
-		playerList.remove(playerId);
-		logger.info("Disconnect");
+
+                if(playerList.indexOf(playerId) > 1){
+		    playerList.remove(playerId);
+		    logger.info("Disconnect:" + playerId);
+                    board = new String[25][25];
+                }
 
 		PlayMessage playMessage = new PlayMessage();
 		playMessage.setPlayerId(playerId);
