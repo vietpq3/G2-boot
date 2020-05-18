@@ -1,1 +1,1 @@
-web: java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=60000,suspend=y -jar target/*.war --server.port=$PORT
+web: java -agentlib:jdwp=transport=dt_socket,server=y,address=9090,suspend=n -jar target/*.war --server.port=$PORT
