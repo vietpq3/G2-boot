@@ -49,11 +49,10 @@ public class WebSocketEventListener {
 			logger.info("User Disconnected : " + playerId);
 		}
 
-		if (playerList.indexOf(playerId) < 2) {
+		if (playerList.remove(playerId)) {
 			playMessage.setActionType(ActionType.LEAVE);
 			board = new String[25][25];
 		}
-		playerList.remove(playerId);
 
 		messagingTemplate.convertAndSend("/topic/gameRoom", playMessage);
 	}
