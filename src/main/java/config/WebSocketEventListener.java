@@ -15,6 +15,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import entity.ActionType;
 import entity.PlayMessage;
+import utils.XOUtils;
 
 @Component
 public class WebSocketEventListener {
@@ -28,8 +29,8 @@ public class WebSocketEventListener {
 	@Qualifier("playerList")
 	private List<String> playerList;
 
-	@SuppressWarnings("unused")
 	@Autowired
+	@Qualifier("board")
 	private String[][] board;
 
 	@EventListener
@@ -51,7 +52,7 @@ public class WebSocketEventListener {
 
 		if (playerList.remove(playerId)) {
 			playMessage.setActionType(ActionType.LEAVE);
-			board = new String[25][25];
+			XOUtils.resetBoard(board);
 		}
 
 		messagingTemplate.convertAndSend("/topic/gameRoom", playMessage);

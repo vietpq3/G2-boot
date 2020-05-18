@@ -18,6 +18,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
+import constant.XOConstant;
+
 @SpringBootApplication(scanBasePackages = { "controller", "logicImpl", "daoImpl", "config" })
 public class G2BootApplication {
 
@@ -74,6 +76,6 @@ public class G2BootApplication {
 
 	@Bean(name = "board")
 	public String[][] getBoard() {
-		return new String[25][25];
+		return new String[XOConstant.SIZE][XOConstant.SIZE];
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import entity.ActionType;
 import entity.PlayMessage;
+import utils.XOUtils;
 
 @Controller
 public class WebSocketController {
@@ -25,6 +26,7 @@ public class WebSocketController {
 	private String previousPlayerId;
 
 	@Autowired
+	@Qualifier("board")
 	public String[][] board;
 
 	@MessageMapping("/play")
@@ -51,7 +53,7 @@ public class WebSocketController {
 
 			if (this.checkWinner(x, y) != null) {
 				playMessage.setActionType(ActionType.END);
-				board = new String[25][25];
+				XOUtils.resetBoard(board);
 			}
 		}
 

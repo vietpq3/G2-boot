@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import constant.XOConstant;
+
 @Controller
 public class XOController {
 
@@ -22,11 +24,9 @@ public class XOController {
 	@Qualifier("playerList")
 	private List<String> playerList;
 
-	private int size = 25;
-
 	@RequestMapping(value = { "", "/", "xo" })
 	public String index(HttpServletRequest request, Model model) {
-		model.addAttribute("size", size);
+		model.addAttribute("size", XOConstant.SIZE);
 
 		return "thymeleaf/xo";
 	}
