@@ -25,7 +25,7 @@ public class WebSocketEventListener {
 	private SimpMessageSendingOperations messagingTemplate;
 
 	@Autowired
-	@Qualifier(value = "playerList")
+	@Qualifier("playerList")
 	private List<String> playerList;
 
 	@SuppressWarnings("unused")
