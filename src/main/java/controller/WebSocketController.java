@@ -32,10 +32,12 @@ public class WebSocketController {
 	public PlayMessage sendMessage(@Payload PlayMessage playMessage, SimpMessageHeaderAccessor headerAccessor) {
 
 		String playerId = headerAccessor.getSessionId();
+		playMessage.setPlayerId(playerId);
 		int x = playMessage.getX();
 		int y = playMessage.getY();
 
-		if (playerId.equals(previousPlayerId) || StringUtils.isNotEmpty(board[x][y]) || playMessage.getActionType() == ActionType.END) {
+		if (playerId.equals(previousPlayerId) || StringUtils.isNotEmpty(board[x][y])
+				|| playMessage.getActionType() == ActionType.END) {
 			playMessage.setActionType(null);
 		} else if (!playerList.contains(playerId)) {
 			playMessage.setActionType(ActionType.WATCH);
@@ -142,6 +144,7 @@ public class WebSocketController {
 				playMessage.setActionType(ActionType.WATCH);
 				break;
 			default:
+				playMessage.setActionType(null);
 				break;
 			}
 		}

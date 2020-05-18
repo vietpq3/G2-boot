@@ -28,8 +28,9 @@ public class WebSocketEventListener {
 	@Qualifier(value = "playerList")
 	private List<String> playerList;
 
-        @Autowired
-        private String[][] board;
+	@SuppressWarnings("unused")
+	@Autowired
+	private String[][] board;
 
 	@EventListener
 	public void handleWebSocketConnectListener(SessionConnectedEvent event) {
@@ -39,21 +40,20 @@ public class WebSocketEventListener {
 	@EventListener
 	public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-
 		String playerId = headerAccessor.getSessionId();
+
+		PlayMessage playMessage = new PlayMessage();
+		playMessage.setPlayerId(playerId);
+
 		if (playerId != null) {
 			logger.info("User Disconnected : " + playerId);
 		}
 
-                if(playerList.indexOf(playerId) < 2){
-		    playerList.remove(playerId);
-		    logger.info("Disconnect:" + playerId);
-                    board = new String[25][25];
-                }
-
-		PlayMessage playMessage = new PlayMessage();
-		playMessage.setPlayerId(playerId);
-		playMessage.setActionType(ActionType.LEAVE);
+		if (playerList.indexOf(playerId) < 2) {
+			playMessage.setActionType(ActionType.LEAVE);
+			board = new String[25][25];
+		}
+		playerList.remove(playerId);
 
 		messagingTemplate.convertAndSend("/topic/gameRoom", playMessage);
 	}
