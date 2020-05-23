@@ -22,8 +22,8 @@ function draw(){
 			btn.className = "child";
 			
 			var td = document.createElement("td");
-			td.append(btn);
-			tr.append(td);
+			$(td).append(btn);
+			$(tr).append(td);
 		}
 	}
 }
@@ -71,7 +71,7 @@ function onChatConnected() {
  
  
 function onError(error) {
-    messageElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
+    messageElement.textContent = 'Could not connect to WebSocket server';
     messageElement.style.color = 'red';
 }
  
