@@ -12,10 +12,15 @@ tr, td {
 
 #board {
 	border-spacing: 0px;
+	margin: auto;
 }
 
 #btnDiv {
 	display: block;
+	text-align: center;
+}
+
+#message {
 	text-align: center;
 }
 
@@ -46,6 +51,7 @@ tr, td {
 }
 
 img {
+	height: 26px;
 	max-width: 100%;
 }
 
@@ -53,54 +59,11 @@ img {
 	border: 1px solid #c4c4c4;
 	clear: both;
 	overflow: hidden;
+	max-width: 553px;
 }
 
 .top_spac {
 	margin: 20px 0 0;
-}
-
-.recent_heading {
-	float: left;
-	width: 40%;
-}
-
-.srch_bar {
-	display: inline-block;
-	text-align: right;
-	width: 60%;
-	padding:
-}
-
-.headind_srch {
-	padding: 10px 29px 10px 20px;
-	overflow: hidden;
-	border-bottom: 1px solid #c4c4c4;
-}
-
-.recent_heading h4 {
-	color: #05728f;
-	font-size: 21px;
-	margin: auto;
-}
-
-.srch_bar input {
-	border: 1px solid #cdcdcd;
-	border-width: 0 0 1px 0;
-	width: 80%;
-	padding: 2px 0 4px 6px;
-	background: none;
-}
-
-.srch_bar .input-group-addon button {
-	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-	border: medium none;
-	padding: 0;
-	color: #707070;
-	font-size: 18px;
-}
-
-.srch_bar .input-group-addon {
-	margin: 0 0 0 -27px;
 }
 
 .chat_ib h5 {
@@ -247,5 +210,32 @@ img {
 
 .msg_history {
 	height: 420px;
+	width: 513px;
 	overflow-y: auto;
+}
+
+.name {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+@media (max-width: 991px) {
+	.child {
+		height: 35px;
+		width: 35px;
+	}
+	
+	.inbox_msg {
+		max-width: 100%;
+	}
+	
+	.msg_history {
+		height: 500px;
+		width: 100%;
+	}
+	
+	.received_withd_msg p,
+	.sent_msg p {
+		font-size: 22px;
+	}
 }
